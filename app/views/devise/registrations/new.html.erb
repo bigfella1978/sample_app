@@ -9,33 +9,32 @@
   <form class="form-signup">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control">
+        <%= f.text_field :email, class: "form-control", placeholder: "First Name", tabindex: "2" %>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control">
+        <%= f.password_field :password, class: "form-control", tabindex: "2", placeholder: "Password", required: true %>
       </div>
-      <div class="form-group">
-        <label for="passwordconfirm">Password confirmation</label>
-        <input type="password" class="form-control">
-      </div>
-      <button class="btn btn-danger btn-block" type="submit">Sign Up</button>
-  </form>
+    <div class="form-group">
+      <label for="password_confirmation">Password</label>
+      <%= f.password_field :password_confirmation, class: "form-control", tabindex: "2", placeholder: "Password Confirmation", required: true %>
+    </div>
 
+      <div><%= f.submit "Sign up", class:"btn btn-primary"%></div>
+  </form>
 <%= render "devise/shared/links" %>
 </div>
-
-
-
-
-
 </div>
 </div>
-
 <% end %>
-
-  
 </div>
 
 
 
+
+
+
+
+
+
+ 
