@@ -1,6 +1,12 @@
 <h1>For Sale</h1>
 
-<p>
+<%= form_tag pins_path, method: :get do %> 
+<div class="field">
+<%= label_tag :Description %>
+<%= text_field_tag :search %> 
+<%= submit_tag "Search", name: nil, class: "btn btn-success" %>
+<%= link_to 'Clear', pins_path, class: 'btn btn-danger' %>
+<% end %>
 
 <div id="pins" class="transitions-enabled">
   <% @pins.each do |pin| %>

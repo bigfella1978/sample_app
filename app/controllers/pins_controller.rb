@@ -4,14 +4,19 @@ class PinsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   
   def index
-  @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)   
+    if params[:search].present? && !params[:search].nil?
+      @pins = Pin.where("description LIKE ?", "%#{params[:search]}%").paginate(:page => params[:page], :per_page => 15)
+    else
+      @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
+    end
   end
 
   
   def show
+
   end
 
-  
+
   def new
     @pin = current_user.pins.build
   end
@@ -30,6 +35,7 @@ class PinsController < ApplicationController
     end
   end
 
+
   def update
     if @pin.update(pin_params)
       redirect_to @pin, notice: 'Pin was successfully updated.'
@@ -38,10 +44,12 @@ class PinsController < ApplicationController
     end
   end
 
+
   def destroy
     @pin.destroy
     redirect_to pins_url
   end
+
 
 private
     # Use callbacks to share common setup or constraints between actions.
