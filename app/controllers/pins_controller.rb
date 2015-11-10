@@ -5,7 +5,7 @@ class PinsController < ApplicationController
   
   def index
     if params[:search].present? && !params[:search].nil?
-      @pins = Pin.where("description LIKE ?", "%#{params[:search]}%").paginate(:page => params[:page], :per_page => 15)
+      @pins = Pin.where("LOWER (description) LIKE ?", "%#{params[:search]}%").paginate(:page => params[:page], :per_page => 15)
     else
       @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
     end
