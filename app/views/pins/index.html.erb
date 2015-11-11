@@ -8,12 +8,6 @@
 <%= link_to 'Clear', pins_path, class: 'btn btn-danger btn-sm' %>
 <% end %>
 
-<div class=text-right>
-    <% if user_signed_in? %>
-    <%= link_to 'Post a Free Ad', new_pin_path, class: "btn btn-warning btn-lg" %>
-</div>
-<% end %>
-
 <div id="pins" class="transitions-enabled">
   <% @pins.each do |pin| %>
     <div class="box panel panel-default">
@@ -33,6 +27,12 @@
 <div class="center">
     <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
 </div>
+
+<div class=text-right>
+    <% if user_signed_in? %>
+    <%= link_to 'Post a Free Ad', new_pin_path, class: "btn btn-warning btn-lg" %>
+</div>
+<% end %>
 
 <br>
 
